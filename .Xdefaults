@@ -1,0 +1,116 @@
+URxvt.title:            Terminal
+URxvt.buffered:         true
+URxvt.borderLess:       false
+URxvt.background:       black
+URxvt.foreground:       white
+URxvt.cursorColor:      green
+URxvt.underlineColor:   yellow
+URxvt.font:             xft:Monospace:pixelsize=12:antialias=true
+URxvt.boldFont:         xft:Monospace:bold:pixelsize=12:antialias=true
+URxvt.italicFont:       xft:Monospace:italic:pixelsize=12:antialias=true
+URxvt.perl-ext-common:  default,tabbed,matcher,clipboard,url-select
+URxvt.keysym.M-u:  		perl:url-select:select_next
+URxvt.keysym.Control-Insert: perl:clipboard:copy
+URxvt.keysym.Shift-Insert: perl:clipboard:paste
+
+URxvt.perl-ext: default,url-select
+URxvt.keysym.M-u: perl:url-select:select_next
+URxvt.url-select.launcher: firefox
+URxvt.url-select.underline: false
+
+URxvt.matcher.button:   1
+URxvt.scrollBar:	    false
+URxvt.tabbed.tabbar-fg: 8 
+URxvt.tabbed.tabbar-bg: 0
+URxvt.tabbed.tab-fg:    3 
+URxvt.tabbed.tab-bg:    0
+urxvt.depth:			32
+urxvt.background:		rgba:0000/0000/0000/dddd
+
+#----------tiny color's----------------
+*foreground:     rgb:22/22/22
+*background:     rgb:fa/fa/fa
+!black
+#*color0:         rgb:4f/4f/4f
+*color8:         rgb:25/25/25
+!!red
+*color1:         rgb:85/0d/0d
+*color9:         rgb:98/2b/2b
+!!green
+*color2:         rgb:88/be/32
+*color10:        rgb:af/f7/3e
+!!yellow (orange)
+*color3:         rgb:ff/7e/00
+*color11:        rgb:fa/d4/3d
+!!blue
+*color4:         rgb:32/4c/80
+*color12:        rgb:2b/4f/98
+!!magenta
+*color5:         rgb:70/6c/9a
+*color13:        rgb:82/6a/b1
+!!cyan
+*color6:         rgb:92/b1/9e
+*color14:        rgb:a1/cd/cd
+!!white
+*color7:         rgb:ff/ff/ff
+*color15:        rgb:ff/ff/ff
+
+
+Xcursor.theme:	Pulse-Glass
+
+!==============================================================================
+! XTerm 
+!==============================================================================
+!Кириллица
+XTerm*utf8Title: true
+XTerm*faceName: Droid Sans Mono
+XTerm*faceSize: 10
+xterm*bolfFont: 
+xterm*scrollBar:        false
+xterm*geometry:         100x30
+xterm*eightBitInput:    false
+xterm*metaSendsEscape:  true
+xterm*colorBDMode:      true
+xterm*boldMode:         on
+xterm*alwaysBoldMode:   false
+xterm*dynamicColors:    on
+xterm*colorMode:        on
+xterm*saveLines:        10000
+xterm*visualBell:       false
+
+xterm.perl-ext-common:  default,tabbed,matcher,clipboard,url-select
+xterm.keysym.M-u:  		perl:url-select:select_next
+xterm.keysym.Control-Insert: perl:clipboard:copy
+xterm.keysym.Shift-Insert: perl:clipboard:paste
+
+!==============================================================================
+! Цвета 
+!==============================================================================
+xterm*colorBD:     #e6d51d
+xterm*background:  #111111
+xterm*foreground:  #b4b4b4
+! Чёрный
+xterm*color0:      #000000
+xterm*color8:      #555753
+! Красный
+xterm*color1:      #b6212d
+xterm*color9:      #ff6565
+! Зелёный
+xterm*color2:      #4c8d00
+xterm*color10:     #6bbe1a
+! Жёлтый
+xterm*color3:      #ff8040
+xterm*color11:     #e6d51d
+! Синий
+xterm*color4:      #0086d2
+xterm*color12:     #00d2ff
+! Маджента
+xterm*color5:      #963c59
+xterm*color13:     #d3649f
+! Циановый
+xterm*color6:      #105952
+xterm*color14:     #177f75
+! Белый
+xterm*color7:      #cdcaa9
+xterm*color15:     #ffffff
+
