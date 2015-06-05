@@ -1,0 +1,6 @@
+if [ ! -d /tmp/usb ] ; then
+	mkdir /tmp/usb
+fi
+
+#sudo mount -oiocharset=utf8,users,rw /dev/sdc1 /tmp/usb
+sudo mount -o iocharset=utf8,rw,umask=0,uid=nobody,gid=nobody /dev/sdc1 /tmp/usb

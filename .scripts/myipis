@@ -1,0 +1,2 @@
+echo -e ""
+lynx -dump checkip.dyndns.org

@@ -1,0 +1,4 @@
+path=$(basename $PWD)
+echo $path
+zip -r ../${path}.zip ../$path
+

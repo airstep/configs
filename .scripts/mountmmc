@@ -1,0 +1,5 @@
+if  [ ! -d /tmp/mmc ] ; then
+	mkdir /tmp/mmc
+fi
+
+sudo mount /dev/mmcblk0p1 /tmp/mmc -oiocharset=utf8,users,umask=000

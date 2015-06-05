@@ -1,0 +1,5 @@
+sudo ntpdate -b pool.ntp.org
+
+#Do check and sync hardware clock with:
+hwclock --show
+sudo hwclock --systohc

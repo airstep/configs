@@ -1,0 +1,2 @@
+unlink ~/work/www
+ln -sd $PWD ~/work/www

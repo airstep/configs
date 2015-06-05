@@ -1,0 +1,4 @@
+file=$1
+mountpoint -q /ftp || tgs.sh
+cp $file /ftp/tgsoft.in/work
+echo http://tgsoft.in/work/$file
