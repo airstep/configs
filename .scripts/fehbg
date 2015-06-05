@@ -1,0 +1,6 @@
+#!/bin/sh
+while true;
+do
+   feh --bg-scale --no-fehbg "$(find ~/images -iname \*.jpg | shuf -n 1)"
+   sleep 3m
+done &
