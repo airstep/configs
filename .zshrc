@@ -1,7 +1,7 @@
 HISTFILE=""
 
 autoload -U compinit promptinit
-compinit 
+compinit
 promptinit
 
 PS1="%B%F{blue}%T %F{green}%m %B%F{white}$ "
@@ -25,7 +25,7 @@ export GREP_COLOR='1;32'
 export GTK_IM_MODULE="xim"
 export JDK_HOME=/usr/lib/jvm/java-8-openjdk/
 export VBOX_USER_HOME=/osvrt/.VirtualBox
-export PATH=$PATH:~/scripts/:/usr/local/bin:/opt/java/bin:/osvrt/android-sdk/tools:/osvrt/android-sdk/platform-tools:/osvrt/android-ndk-r10d:~/tools/gsutil:/home/taras/.gem/ruby/2.2.0/bin
+export PATH=$PATH:~/.scripts/:/usr/local/bin:/opt/java/bin:/osvrt/android-sdk/tools:/osvrt/android-sdk/platform-tools:/osvrt/android-ndk-r10d:~/tools/gsutil:/home/taras/.gem/ruby/2.2.0/bin
 export ANDROID_TMP=/osvrt/android-tmp
 export KEYSTORE_PROPERTIES=/home/taras/spd/tgsoft/keys/keystore.properties
 if [ -d /cry/scripts ] ; then
