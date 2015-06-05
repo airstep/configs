@@ -38,7 +38,7 @@
 	m:0x40 + c:33
 	Mod4 + p
 
-#"/home/taras/scripts/VBoxRun.sh"
+#"VBoxRun.sh"
 "VirtualBox"
     m:0x40 + c:55
     Mod4 + v
@@ -63,11 +63,11 @@
     m:0x0 + c:67
     F1
 
-"~/scripts/printscreen.sh"
+"printscreen.sh"
     m:0x0 + c:107
     Print
 
-"~/scripts/printscreen_android.sh"
+"printscreen_android.sh"
     m:0x4 + c:107
     Control + Print
 
