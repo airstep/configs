@@ -1,0 +1,63 @@
+background no 
+use_xft yes
+xftfont Sans:size=10
+update_interval 5.0
+total_run_times 0
+own_window yes
+own_window_type normal
+own_window_transparent yes
+own_window_colour black 
+own_window_hints undecorated,below,sticky,skip_taskbar,skip_pager
+double_buffer yes
+minimum_size 1376 768
+maximum_width 1376
+draw_shades no
+draw_outline no
+draw_borders no
+draw_graph_borders no
+stippled_borders 8
+default_color white
+default_shade_color black
+default_outline_color black
+alignment top_left
+gap_x 5
+gap_y 5
+no_buffers yes
+uppercase no
+text_buffer_size 2048
+
+TEXT
+
+${cpugraph cpu1 25,150 000000 448FC6}${goto 175}${cpugraph cpu2 25,150  000000 448FC6}
+${font Sans:size=10}${cpu cpu1}% / ${freq 1} МГц ${goto 170} ${cpu cpu2}% / ${freq 2} МГц 
+
+
+${if_up eth0}
+${color}${upspeedgraph eth0 25,150 000000 448FC6}${goto 175}${downspeedgraph eth0 25,150 000000 448FC6}
+${color0}${font PizzaDude Bullets:size=10}U${font Sans:size=10} ${totaldown eth0} ${downspeed eth0}Кб/с ${goto 170}${font PizzaDude Bullets:size=10}O${font Sans:size=10} ${font Sans:size=10}${totalup eth0} ${upspeed eth0}Кб/с ${color0}
+${endif}
+
+${if_up wlan0}
+${wireless_essid wlan0}
+${color}${upspeedgraph wlan0 25,150 000000 448FC6}${goto 175}${downspeedgraph wlan0 25,150 000000 448FC6}
+${color0}${font PizzaDude Bullets:size=10}U${font Sans:size=10} ${totaldown wlan0} ${downspeed wlan0}Кб/с ${goto 170}${font PizzaDude Bullets:size=10}O${font Sans:size=10} ${font Sans:size=10}${totalup wlan0} ${upspeed wlan0}Кб/с ${color0}
+
+Скорость подключения: ${wireless_bitrate wlan0}
+Уровень сигнала: ${wireless_link_qual_perc wlan0}% 
+#${wireless_link_bar 3 wlan0}
+Входящий трафик: ${totaldown wlan0}
+Исходящий  трафик: ${totalup wlan0}
+
+${endif}
+
+${diskiograph_read 25,150 000000 448FC6}${goto 175}${diskiograph_write 25,150  000000 448FC6}
+Чтение: ${diskio_read}${goto 175}Запись: ${diskio_write}
+
+#Обороты куллера: ${i8k_right_fan_rpm} ${i8k_right_fan_status} 
+Память: ${memperc}% 
+
+Батарея: ${battery_time} ~ ${battery_percent}%
+${color 448FC6}${battery_bar 15,185}${color}
+
+
+${exec sudo tail -n 10 /var/log/everything.log | cut -d ' ' -f 6-}

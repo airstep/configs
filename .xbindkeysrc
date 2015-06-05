@@ -1,0 +1,81 @@
+"urxvt"
+    m:0x40 + c:54
+    Mod4 + c
+
+"wine .wine/drive_c/Program\ Files\ \(x86\)/totalcmd/TOTALCMD.EXE"
+    m:0x44 + c:28
+    Control+Mod4 + t
+
+"wine .wine/drive_c/Program\ Files\ \(x86\)/Notepad++/notepad++.exe"
+    m:0x44 + c:57
+    Control+Mod4 + n
+
+"firefox"
+    m:0x40 + c:56
+    Mod4 + b
+
+"hamster"
+    m:0x44 + c:43
+    Control+Mod4 + h
+
+"uzbl-browser"
+    m:0x44 + c:54
+    Control+Mod4 + c
+
+"phpstorm.sh"
+    m:0x44 + c:33
+    Control+Mod4 + p
+
+"jetbrains-rubymine"
+    m:0xc + c:27
+    Control+Alt + r
+
+"skype"
+    m:0x40 + c:39
+    Mod4 + s
+
+"pidgin"
+	m:0x40 + c:33
+	Mod4 + p
+
+#"/home/taras/scripts/VBoxRun.sh"
+"VirtualBox"
+    m:0x40 + c:55
+    Mod4 + v
+
+"audacity"
+    m:0x40 + c:38
+    Mod4 + a
+
+"gimp"
+    m:0x40 + c:42
+    Mod4 + g
+
+"/opt/android-studio/bin/studio.sh"
+	m:0x44 + c:31
+	Control+Mod4 + i
+
+"eclipse"
+    m:0x44 + c:26
+    Control+Mod4 + e
+
+"sleep 1 && xset dpms force off"
+    m:0x0 + c:67
+    F1
+
+"~/scripts/printscreen.sh"
+    m:0x0 + c:107
+    Print
+
+"~/scripts/printscreen_android.sh"
+    m:0x4 + c:107
+    Control + Print
+
+"monodevelop"
+    m:0x44 + c:58
+    Control+Mod4 + m
+
+"geany"
+    m:0x44 + c:42
+    Control+Mod4 + g
+

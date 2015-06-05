@@ -1,0 +1,9 @@
+include "/usr/share/X11/locale/en_US.UTF-8/Compose"
+<Multi_key> <Cyrillic_e> : "є" U0454
+<Multi_key> <Cyrillic_E> : "Є" U0404
+<Multi_key> <Cyrillic_yeru> : "i" U0456
+<Multi_key> <Cyrillic_YERU> : "І" U0406
+<Multi_key> <Cyrillic_ghe> : "ґ" U0491
+<Multi_key> <Cyrillic_GHE> : "Ґ" U0490
+<Multi_key> <Cyrillic_hardsign> : "ї" U0457
+<Multi_key> <Cyrillic_HARDSIGN> : "Ї" U0407
