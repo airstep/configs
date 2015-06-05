@@ -93,6 +93,8 @@ imap <F2> <esc>:w<cr>i
 
 " F4 - exit page
 nmap <F4> :q!<cr>
+vmap <F4> <esc> :q!<cr>i
+imap <F4> <esc> :q!<cr>i
 
 " F5 - execute current file
 " ! to run, % to refer to the file
