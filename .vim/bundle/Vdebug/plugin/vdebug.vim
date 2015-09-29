@@ -9,7 +9,7 @@
 "               Perl, NodeJS)
 "   Maintainer: Jon Cairns <jon at joncairns.com>
 "      Version: 1.4.1
-"               Inspired by the Xdebug plugin, which was originally written by
+"               Inspired by the Xdebug plugin, which was originally written by 
 "               Seung Woo Shin <segv <at> sayclub.com> and extended by many
 "               others.
 "        Usage: Use :help Vdebug for information on how to configure and use
@@ -86,7 +86,7 @@ let g:vdebug_options_defaults = {
 \    "port" : 9000,
 \    "timeout" : 20,
 \    "server" : 'localhost',
-\    "on_close" : 'detach',
+\    "on_close" : 'stop',
 \    "break_on_open" : 0,
 \    "ide_key" : '',
 \    "debug_window_level" : 0,
@@ -115,17 +115,26 @@ command! -nargs=? -complete=customlist,s:BreakpointTypes Breakpoint python debug
 command! VdebugStart python debugger.run()
 command! -nargs=? BreakpointRemove python debugger.remove_breakpoint(<q-args>)
 command! BreakpointWindow python debugger.toggle_breakpoint_window()
-command! -nargs=? VdebugEval python debugger.handle_eval(<q-args>)
+command! -nargs=? -bang VdebugEval call s:HandleEval('<bang>', <q-args>)
 command! -nargs=+ -complete=customlist,s:OptionNames VdebugOpt python debugger.handle_opt(<f-args>)
+command! -nargs=? VdebugTrace python debugger.handle_trace(<q-args>)
+
+if hlexists("DbgCurrentLine") == 0
+    hi default DbgCurrentLine term=reverse ctermfg=7 ctermbg=23 guifg=#DEEBFE guibg=#0d2a2d
+end
+if hlexists("DbgCurrentSign") == 0
+    hi default DbgCurrentSign term=reverse ctermfg=7 ctermbg=23 guifg=#DEEBFE guibg=#0d2a2d
+end
+if hlexists("DbgBreakptLine") == 0
+    hi default DbgBreakptLine term=reverse ctermfg=7 ctermbg=183 guifg=#DEEBFE guibg=#382c55
+end
+if hlexists("DbgBreakptSign") == 0
+    hi default DbgBreakptSign term=reverse ctermfg=7 ctermbg=183 guifg=#DEEBFE guibg=#382c55
+end
 
 " Signs and highlighted lines for breakpoints, etc.
 sign define current text=> texthl=DbgCurrentSign linehl=DbgCurrentLine
 sign define breakpt text=* texthl=DbgBreakptSign linehl=DbgBreakptLine
-
-hi default DbgCurrentLine term=reverse ctermfg=White ctermbg=Red guifg=#DEEBFE guibg=#0d2a2d
-hi default DbgCurrentSign term=reverse ctermfg=White ctermbg=Red guifg=#DEEBFE guibg=#0d2a2d
-hi default DbgBreakptLine term=reverse ctermfg=White ctermbg=Green guifg=#DEEBFE guibg=#382c55
-hi default DbgBreakptSign term=reverse ctermfg=White ctermbg=Green guifg=#DEEBFE guibg=#382c55
 
 function! s:BreakpointTypes(A,L,P)
     let arg_to_cursor = strpart(a:L,11,a:P)
@@ -134,6 +143,16 @@ function! s:BreakpointTypes(A,L,P)
         return filter(['conditional ','exception ','return ','call ','watch '],'v:val =~ "^".a:A.".*"')
     else
         return []
+    endif
+endfunction
+
+function! s:HandleEval(bang,code)
+    let code = escape(a:code,'"')
+    if strlen(a:bang)
+        execute 'python debugger.save_eval("'.code.'")'
+    endif
+    if strlen(a:code)
+        execute 'python debugger.handle_eval("'.code.'")'
     endif
 endfunction
 

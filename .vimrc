@@ -8,56 +8,71 @@ call vundle#begin()
 " let Vundle manage Vundle, required
 Plugin 'gmarik/Vundle.vim'
 
-" Keep Plugin commands between vundle#begin/end.
+" start plugin section --------------------------
 
+" universal debugger
+Plugin 'Vdebug'
+
+" changes the working directory to the project root 
+"Plugin 'airblade/vim-rooter'
+
+Plugin 'hsanson/vim-android'
+
+au BufEnter *.java nmap <F5> <ESC>:Android assembleDebug<CR>
+au BufEnter *.java nmap <F7> <ESC>:Android installDebug<CR>
+let g:android_sdk_path="/opt/android-sdk"
+let g:gradle_path="/usr/bin/gradle"
+
+Plugin 'artur-shaik/vim-javacomplete2'
+
+autocmd FileType java set omnifunc=javacomplete#Complete
+nnoremap <F3> :JCimportAdd<cr>
+inoremap <F3> <esc>:JCimportAddI<cr>
+
+Plugin 'nanotech/jellybeans.vim'
+Plugin 'honza/vim-snippets'
+"Plugin 'isdamir/mswin.vim'
+Plugin 'Valloric/YouCompleteMe'
+Plugin 'SirVer/ultisnips'
+"Plugin 'tpope/vim-rails'
 " git shortcuts (Gwrite, Gread, etc)
-Plugin 'tpope/vim-fugitive'
+"Plugin 'tpope/vim-fugitive'
 
 " html tags completion (example: div<Ctrl+E>)
 " make :set filetype=html --> before usage
-Plugin 'rstacruz/sparkup'
-
-" navigation of the Rails directory structure
-" syntax highlighting (CTRL-X CTRL-U)
-Plugin 'rails.vim'
-
-" fuzzy finder for Ctrl+P
-Plugin 'kien/ctrlp.vim'
-
-" explore filesystem tree
-Plugin 'scrooloose/nerdtree'
+"Plugin 'rstacruz/sparkup'
 
 " asynchronous evaluation of vim scripts
-Plugin 'xolox/vim-misc'
-
-" scheme
-Plugin 'xolox/vim-colorscheme-switcher'
-Plugin 'jellybeans.vim'
-
-" status
-Plugin 'vim-airline'
-
-" code syntax check
-Plugin 'syntastic'
-
-" useful snippets first expand the #! snippet
-Plugin 'MarcWeber/vim-addon-mw-utils'
-Plugin 'tomtom/tlib_vim'
-Plugin 'garbas/vim-snipmate'
-Plugin 'honza/vim-snippets'
+"Plugin 'xolox/vim-misc'
 
 " shows a git diff
 Plugin 'airblade/vim-gitgutter'
 
-" shell prompt
-Plugin 'edkolev/promptline.vim'
+let g:gitgutter_max_signs=2000
+
+" code syntax check
+Plugin 'syntastic'
 
 " clear whitespace
-Plugin 'StripWhiteSpaces'
+"Plugin 'StripWhiteSpaces'
 
-" all of your Plugins must be added before the following line
+"Plugin 'airblade/vim-rooter'
+
+" stop plugin section  --------------------------
 call vundle#end()            " required
 filetype plugin indent on    " required
+
+let g:EclimCompletionMethod = 'omnifunc'
+
+" by default, hide gui menus
+set guioptions=i
+
+" for dark terminal
+set background=dark
+
+" set default scheme
+set t_Co=256
+colorscheme jellybeans
 
 " text codepage by default
 set termencoding=utf-8
@@ -65,23 +80,42 @@ set termencoding=utf-8
 " use ack instead of grep
 set grepprg=ack
 
-" for dark terminal
-set background=dark
-
-set t_Co=256
-colorscheme jellybeans
-
 " syntax highlighting enables
 if has("syntax")
   syntax on
 endif
 
+" popup menu doesn't select the first completion item
+"set completeopt=longest,menuone
+
 "indent settings
-set tabstop=2
-set shiftwidth=2
-set softtabstop=2
-set expandtab
-set autoindent
+set nowrap
+set tabstop=4
+set smarttab
+set tags=tags
+set softtabstop=4               " when hitting <BS>, pretend like a tab is removed, even if spaces
+set expandtab                   " expand tabs by default (overloadable per file type later)
+set shiftwidth=4                " number of spaces to use for autoindenting
+set shiftround                  " use multiple of shiftwidth when indenting with '<' and '>'
+set backspace=indent,eol,start  " allow backspacing over everything in insert mode
+set autoindent                  " always set autoindenting on
+set copyindent                  " copy the previous indentation on autoindenting
+set ignorecase                  " ignore case when searching
+set smartcase                   " ignore case if search pattern is all lowercase,
+set timeout timeoutlen=200 ttimeoutlen=100
+set noerrorbells         " don't beep
+
+" set working directory
+" of the current file
+set autochdir
+
+" left treeview
+let g:netrw_winsize = -28
+let g:netrw_banner = 0
+
+filetype plugin indent on
+
+" events
 
 " exit vim
 map <Esc><Esc> :qa!<CR>
@@ -96,51 +130,43 @@ nmap <F4> :q!<cr>
 vmap <F4> <esc> :q!<cr>i
 imap <F4> <esc> :q!<cr>i
 
-" F5 - execute current file
-" ! to run, % to refer to the file
-" :p to use the full path of the current file
-nmap <F5> :! %:p<cr>
+"quickfix
+map <C-j> :cn<CR>
+map <C-k> :cp<CR>
+
+" \ + r - execute current file
 nnoremap <leader>r :!%:p<cr>
 
-" toggle tree
-map <C-\> :NERDTreeToggle<cr>
+" before and after paste from GUI
+set pastetoggle=<F12>
 
-" toggle line numbers
-nmap <C-N><C-N> :set invnumber<CR>
+" toggle fullscreen
+map <F11> <Esc>:call ToggleGUICruft()<cr>
 
-" NERDTress File highlighting
-function! NERDTreeHighlightFile(extension, fg, bg, guifg, guibg)
- exec 'autocmd filetype nerdtree highlight ' . a:extension .' ctermbg='. a:bg .' ctermfg='. a:fg .' guibg='. a:guibg .' guifg='. a:guifg
- exec 'autocmd filetype nerdtree syn match ' . a:extension .' #^\s\+.*'. a:extension .'$#'
+map <C-\> :Lexplore<cr>
+
+" functions
+
+" hide menu and scrollbar
+function! ToggleGUICruft()
+  if &guioptions=='i'
+    exec('set guioptions=imTrL')
+  else
+    exec('set guioptions=i')
+  endif
 endfunction
 
-call NERDTreeHighlightFile('jade', 'green', 'none', 'green', '#151515')
-call NERDTreeHighlightFile('ini', 'yellow', 'none', 'yellow', '#151515')
-call NERDTreeHighlightFile('md', 'blue', 'none', '#3366FF', '#151515')
-call NERDTreeHighlightFile('yml', 'yellow', 'none', 'yellow', '#151515')
-call NERDTreeHighlightFile('config', 'yellow', 'none', 'yellow', '#151515')
-call NERDTreeHighlightFile('conf', 'yellow', 'none', 'yellow', '#151515')
-call NERDTreeHighlightFile('json', 'yellow', 'none', 'yellow', '#151515')
-call NERDTreeHighlightFile('html', 'yellow', 'none', 'yellow', '#151515')
-call NERDTreeHighlightFile('styl', 'cyan', 'none', 'cyan', '#151515')
-call NERDTreeHighlightFile('css', 'cyan', 'none', 'cyan', '#151515')
-call NERDTreeHighlightFile('coffee', 'Red', 'none', 'red', '#151515')
-call NERDTreeHighlightFile('js', 'Red', 'none', '#ffa500', '#151515')
-call NERDTreeHighlightFile('php', 'Magenta', 'none', '#ff00ff', '#151515')
-
-" syntastic check
-set statusline+=%#warningmsg#
-set statusline+=%{SyntasticStatuslineFlag()}
-set statusline+=%*
-
-let g:syntastic_always_populate_loc_list = 1
-let g:syntastic_auto_loc_list = 1
-let g:syntastic_check_on_open = 1
-let g:syntastic_check_on_wq = 0
-
-" show airline
-set laststatus=2
-"let g:airline_theme='luna'
+" fix for snippets autocomplete
+let g:ulti_expand_or_jump_res = 0
+function ExpandSnippetOrCarriageReturn()
+    let snippet = UltiSnips#ExpandSnippetOrJump()
+    if g:ulti_expand_or_jump_res > 0
+        return snippet
+    else
+        return "\<CR>"
+    endif
+endfunction
+inoremap <expr> <CR> pumvisible() ? "<C-R>=ExpandSnippetOrCarriageReturn()<CR>" : "\<CR>"
 
 " always jump to the last cursor position on exit\open
 autocmd BufReadPost *
@@ -149,5 +175,18 @@ autocmd BufReadPost *
       \         exe "normal g'\"" |
       \     endif
 
-let g:promptline_preset = 'full'
-let g:promptline_theme = 'jelly'
+" Automatically open, but do not go to (if there are errors) the quickfix /
+" location list window, or close it when is has become empty.
+"
+" Note: Must allow nesting of autocmds to enable any customizations for quickfix
+" buffers.
+" Note: Normally, :cwindow jumps to the quickfix window if the command opens it
+" (but not if it's already open). However, as part of the autocmd, this doesn't
+" seem to happen.
+autocmd QuickFixCmdPost [^l]* nested cwindow
+autocmd QuickFixCmdPost    l* nested lwindow
+
+" auto-format xml (libxml2 must be installed)
+au FileType xml exe ":silent %!xmllint --format --recover - 2>/dev/null"
+
+let g:EclimCompletionMethod = 'omnifunc'

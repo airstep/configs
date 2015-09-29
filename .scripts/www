@@ -1,2 +1,2 @@
-unlink ~/work/www
-ln -sd $PWD ~/work/www
+unlink /osvrt/www
+ln -sd $PWD /osvrt/www
