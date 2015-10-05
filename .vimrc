@@ -22,6 +22,8 @@ let g:gitgutter_max_signs=3000
 " code syntax check
 Plugin 'syntastic'
 
+Plugin 'vimprj'
+Plugin 'DfrankUtil'
 Plugin 'amiorin/vim-project'
 
 if filereadable(".projects.vimrc")
@@ -29,8 +31,13 @@ if filereadable(".projects.vimrc")
 endif
 
 Plugin 'kien/ctrlp.vim'
+let g:ctrlp_root_markers = ['.git']
+" always open in your project's root directory
+let g:ctrlp_working_path_mode=2
 
 Plugin 'scrooloose/nerdtree'
+let g:NERDTreeChDirMode=2
+
 Plugin 'Xuyuanp/nerdtree-git-plugin'
 
 " jump around documents \\w
@@ -50,8 +57,6 @@ Plugin 'StripWhiteSpaces'
 
 " PHP
 Plugin 'alvan/vim-php-manual'
-Plugin 'MarcWeber/vim-addon-php-manual'
-
 Plugin 'shawncplus/phpcomplete.vim'
 
 autocmd FileType php setlocal omnifunc=phpcomplete#CompletePHP
