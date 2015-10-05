@@ -10,12 +10,58 @@ Plugin 'gmarik/Vundle.vim'
 
 " start plugin section --------------------------
 
+" General
+
 " universal debugger
 Plugin 'Vdebug'
 
-" changes the working directory to the project root 
-"Plugin 'airblade/vim-rooter'
+" shows a git diff
+Plugin 'airblade/vim-gitgutter'
+let g:gitgutter_max_signs=3000
 
+" code syntax check
+Plugin 'syntastic'
+
+Plugin 'amiorin/vim-project'
+
+if filereadable(".projects.vimrc")
+    so .projects.vimrc
+endif
+
+Plugin 'kien/ctrlp.vim'
+
+Plugin 'scrooloose/nerdtree'
+Plugin 'Xuyuanp/nerdtree-git-plugin'
+
+" jump around documents \\w
+Plugin 'Lokaltog/vim-easymotion'
+
+Plugin 'nanotech/jellybeans.vim'
+Plugin 'honza/vim-snippets'
+
+Plugin 'Valloric/YouCompleteMe'
+Plugin 'SirVer/ultisnips'
+
+" html tags completion (div<Ctrl+E>)
+Plugin 'rstacruz/sparkup'
+
+" clear whitespace
+Plugin 'StripWhiteSpaces'
+
+" PHP
+Plugin 'alvan/vim-php-manual'
+Plugin 'MarcWeber/vim-addon-php-manual'
+
+Plugin 'shawncplus/phpcomplete.vim'
+
+autocmd FileType php setlocal omnifunc=phpcomplete#CompletePHP
+let php_sql_query=1
+let php_htmlInStrings=1
+let g:phpcomplete_mappings = { 'jump_to_def': ',g', }
+set completeopt=longest,menuone
+
+" Android
+Plugin 'tfnico/vim-gradle'
 Plugin 'hsanson/vim-android'
 
 au BufEnter *.java nmap <F5> <ESC>:Android assembleDebug<CR>
@@ -29,40 +75,9 @@ autocmd FileType java set omnifunc=javacomplete#Complete
 nnoremap <F3> :JCimportAdd<cr>
 inoremap <F3> <esc>:JCimportAddI<cr>
 
-Plugin 'nanotech/jellybeans.vim'
-Plugin 'honza/vim-snippets'
-"Plugin 'isdamir/mswin.vim'
-Plugin 'Valloric/YouCompleteMe'
-Plugin 'SirVer/ultisnips'
-"Plugin 'tpope/vim-rails'
-" git shortcuts (Gwrite, Gread, etc)
-"Plugin 'tpope/vim-fugitive'
-
-" html tags completion (example: div<Ctrl+E>)
-" make :set filetype=html --> before usage
-"Plugin 'rstacruz/sparkup'
-
-" asynchronous evaluation of vim scripts
-"Plugin 'xolox/vim-misc'
-
-" shows a git diff
-Plugin 'airblade/vim-gitgutter'
-
-let g:gitgutter_max_signs=2000
-
-" code syntax check
-Plugin 'syntastic'
-
-" clear whitespace
-"Plugin 'StripWhiteSpaces'
-
-"Plugin 'airblade/vim-rooter'
-
 " stop plugin section  --------------------------
 call vundle#end()            " required
 filetype plugin indent on    " required
-
-let g:EclimCompletionMethod = 'omnifunc'
 
 " by default, hide gui menus
 set guioptions=i
@@ -73,6 +88,9 @@ set background=dark
 " set default scheme
 set t_Co=256
 colorscheme jellybeans
+
+" default file encoding
+set encoding=utf-8
 
 " text codepage by default
 set termencoding=utf-8
@@ -143,7 +161,8 @@ set pastetoggle=<F12>
 " toggle fullscreen
 map <F11> <Esc>:call ToggleGUICruft()<cr>
 
-map <C-\> :Lexplore<cr>
+"map <C-\> :Lexplore<cr>
+map <C-\> :NERDTreeToggle<cr>
 
 " functions
 
@@ -187,6 +206,32 @@ autocmd QuickFixCmdPost [^l]* nested cwindow
 autocmd QuickFixCmdPost    l* nested lwindow
 
 " auto-format xml (libxml2 must be installed)
-au FileType xml exe ":silent %!xmllint --format --recover - 2>/dev/null"
+"au FileType xml exe ":silent %!xmllint --format --recover - 2>/dev/null"
 
-let g:EclimCompletionMethod = 'omnifunc'
+inoremap {      {}<Left>
+inoremap (      ()<Left>
+inoremap [      []<Left>
+
+imap <C-Space> <C-X><C-O>
+
+
+" NERDTress File highlighting
+function! NERDTreeHighlightFile(extension, fg, bg, guifg, guibg)
+ exec 'autocmd filetype nerdtree highlight ' . a:extension .' ctermbg='. a:bg .' ctermfg='. a:fg .' guibg='. a:guibg .' guifg='. a:guifg
+ exec 'autocmd filetype nerdtree syn match ' . a:extension .' #^\s\+.*'. a:extension .'$#'
+endfunction
+
+call NERDTreeHighlightFile('jade', 'green', 'none', 'green', '#151515')
+call NERDTreeHighlightFile('ini', 'yellow', 'none', 'yellow', '#151515')
+call NERDTreeHighlightFile('md', 'blue', 'none', '#3366FF', '#151515')
+call NERDTreeHighlightFile('yml', 'yellow', 'none', 'yellow', '#151515')
+call NERDTreeHighlightFile('config', 'yellow', 'none', 'yellow', '#151515')
+call NERDTreeHighlightFile('conf', 'yellow', 'none', 'yellow', '#151515')
+call NERDTreeHighlightFile('json', 'yellow', 'none', 'yellow', '#151515')
+call NERDTreeHighlightFile('html', 'yellow', 'none', 'yellow', '#151515')
+call NERDTreeHighlightFile('styl', 'cyan', 'none', 'cyan', '#151515')
+call NERDTreeHighlightFile('css', 'cyan', 'none', 'cyan', '#151515')
+call NERDTreeHighlightFile('coffee', 'Red', 'none', 'red', '#151515')
+call NERDTreeHighlightFile('js', 'Red', 'none', '#ffa500', '#151515')
+call NERDTreeHighlightFile('php', 'Magenta', 'none', '#ff00ff', '#151515')
+call NERDTreeHighlightFile('java', 'Magenta', 'none', '#24a8d3', '#151515')
