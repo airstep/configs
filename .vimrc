@@ -21,6 +21,7 @@ let g:gitgutter_max_signs=3000
 
 " code syntax check
 Plugin 'syntastic'
+let g:syntastic_check_on_open=1
 
 Plugin 'vimprj'
 Plugin 'DfrankUtil'
@@ -54,6 +55,15 @@ Plugin 'rstacruz/sparkup'
 
 " clear whitespace
 Plugin 'StripWhiteSpaces'
+
+" automate some typing
+Plugin 'Raimondi/delimitMate'
+let delimitMate_expand_cr = 1
+imap <C-c> <CR><Esc>O
+
+" JavaScript
+Plugin 'pangloss/vim-javascript'
+Plugin 'nathanaelkane/vim-indent-guides'
 
 " PHP
 Plugin 'alvan/vim-php-manual'
@@ -166,8 +176,11 @@ set pastetoggle=<F12>
 " toggle fullscreen
 map <F11> <Esc>:call ToggleGUICruft()<cr>
 
-"map <C-\> :Lexplore<cr>
+" tree
 map <C-\> :NERDTreeToggle<cr>
+
+" autocomplete ctrl+space
+imap <C-Space> <C-X><C-O>
 
 " functions
 
@@ -211,14 +224,7 @@ autocmd QuickFixCmdPost [^l]* nested cwindow
 autocmd QuickFixCmdPost    l* nested lwindow
 
 " auto-format xml (libxml2 must be installed)
-"au FileType xml exe ":silent %!xmllint --format --recover - 2>/dev/null"
-
-inoremap {      {}<Left>
-inoremap (      ()<Left>
-inoremap [      []<Left>
-
-imap <C-Space> <C-X><C-O>
-
+au FileType xml exe ":silent %!xmllint --format --recover - 2>/dev/null"
 
 " NERDTress File highlighting
 function! NERDTreeHighlightFile(extension, fg, bg, guifg, guibg)
