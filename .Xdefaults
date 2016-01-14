@@ -20,9 +20,9 @@ URxvt.url-select.underline: false
 
 URxvt.matcher.button:   1
 URxvt.scrollBar:	    false
-URxvt.tabbed.tabbar-fg: 8 
+URxvt.tabbed.tabbar-fg: 8
 URxvt.tabbed.tabbar-bg: 0
-URxvt.tabbed.tab-fg:    3 
+URxvt.tabbed.tab-fg:    3
 URxvt.tabbed.tab-bg:    0
 urxvt.depth:			32
 urxvt.background:		rgba:0000/0000/0000/dddd
@@ -59,13 +59,14 @@ urxvt.background:		rgba:0000/0000/0000/dddd
 Xcursor.theme:	Pulse-Glass
 
 !==============================================================================
-! XTerm 
+! XTerm
 !==============================================================================
 !Кириллица
 XTerm*utf8Title: true
-XTerm*faceName: Droid Sans Mono
+!XTerm*faceName: Droid Sans Mono
+xterm*faceName:monospace:pixelsize=13
 XTerm*faceSize: 10
-xterm*bolfFont: 
+xterm*bolfFont:
 xterm*scrollBar:        false
 xterm*geometry:         100x30
 xterm*eightBitInput:    false
@@ -84,7 +85,7 @@ xterm.keysym.Control-Insert: perl:clipboard:copy
 xterm.keysym.Shift-Insert: perl:clipboard:paste
 
 !==============================================================================
-! Цвета 
+! Цвета
 !==============================================================================
 xterm*colorBD:     #e6d51d
 xterm*background:  #111111

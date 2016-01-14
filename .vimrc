@@ -15,13 +15,24 @@ Plugin 'gmarik/Vundle.vim'
 " universal debugger
 Plugin 'Vdebug'
 
+" async executor Dispatch cmd
+Plugin 'tpope/vim-dispatch'
+
+" tree undo
+Plugin 'sjl/gundo.vim'
+
+" ack
+Plugin 'mileszs/ack.vim'
+
+Plugin 'tpope/vim-liquid'
+
 " shows a git diff
 Plugin 'airblade/vim-gitgutter'
 let g:gitgutter_max_signs=3000
 
 " code syntax check
 Plugin 'syntastic'
-let g:syntastic_check_on_open=1
+let g:syntastic_check_on_open=0
 
 Plugin 'vimprj'
 Plugin 'DfrankUtil'
@@ -61,10 +72,20 @@ Plugin 'Raimondi/delimitMate'
 let delimitMate_expand_cr = 1
 imap <C-c> <CR><Esc>O
 
+" diff dirs
+Plugin 'will133/vim-dirdiff'
+
 " JavaScript
 Plugin 'pangloss/vim-javascript'
 Plugin 'nathanaelkane/vim-indent-guides'
+Plugin 'mklabs/grunt.vim'
+Plugin 'chrisgillis/vim-bootstrap3-snippets'
+Plugin 'bonsaiben/bootstrap-snippets'
 
+" nodejs
+Plugin 'digitaltoad/vim-jade'
+Plugin 'briancollins/vim-jst'
+"au BufNewFile,BufRead *.ejs set filetype=html
 " PHP
 Plugin 'alvan/vim-php-manual'
 Plugin 'shawncplus/phpcomplete.vim'
@@ -75,20 +96,23 @@ let php_htmlInStrings=1
 let g:phpcomplete_mappings = { 'jump_to_def': ',g', }
 set completeopt=longest,menuone
 
+" Swift
+Plugin 'keith/swift.vim'
+
 " Android
 Plugin 'tfnico/vim-gradle'
 Plugin 'hsanson/vim-android'
 
 au BufEnter *.java nmap <F5> <ESC>:Android assembleDebug<CR>
 au BufEnter *.java nmap <F7> <ESC>:Android installDebug<CR>
+
 let g:android_sdk_path="/opt/android-sdk"
 let g:gradle_path="/usr/bin/gradle"
 
 Plugin 'artur-shaik/vim-javacomplete2'
 
 autocmd FileType java set omnifunc=javacomplete#Complete
-nnoremap <F3> :JCimportAdd<cr>
-inoremap <F3> <esc>:JCimportAddI<cr>
+au BufEnter *.java nmap <F3> <ESC>:JCimportAdd<CR>
 
 " stop plugin section  --------------------------
 call vundle#end()            " required
@@ -136,7 +160,8 @@ set copyindent                  " copy the previous indentation on autoindenting
 set ignorecase                  " ignore case when searching
 set smartcase                   " ignore case if search pattern is all lowercase,
 set timeout timeoutlen=200 ttimeoutlen=100
-set noerrorbells         " don't beep
+set noerrorbells                " don't beep
+set noswapfile
 
 " set working directory
 " of the current file
@@ -172,6 +197,15 @@ nnoremap <leader>r :!%:p<cr>
 
 " before and after paste from GUI
 set pastetoggle=<F12>
+
+" C
+au BufEnter *.c nmap <F5> <ESC>:w<CR> :!./%<<CR>
+au BufEnter *.c nmap <F6> <ESC>:w<CR> :make clean<CR> :make<CR> :!./%<<CR>
+au BufEnter *.c nmap <F8> <ESC>:make clean<CR>
+au BufEnter *.c nmap <F9> <ESC>:make<CR>
+
+" nodejs
+au BufEnter *.js nmap <F5> <ESC>:w<CR> :!node %<CR>
 
 " toggle fullscreen
 map <F11> <Esc>:call ToggleGUICruft()<cr>
@@ -224,7 +258,9 @@ autocmd QuickFixCmdPost [^l]* nested cwindow
 autocmd QuickFixCmdPost    l* nested lwindow
 
 " auto-format xml (libxml2 must be installed)
-au FileType xml exe ":silent %!xmllint --format --recover - 2>/dev/null"
+"au FileType xml exe ":silent %!xmllint --format --recover - 2>/dev/null"
+au BufEnter *.xml nmap <F3> <ESC>:silent %!xmllint --format --recover - 2>/dev/null<CR>
+au BufEnter *.json nmap <F3> <ESC>:silent %!python -m json.tool - 2>/dev/null<CR>
 
 " NERDTress File highlighting
 function! NERDTreeHighlightFile(extension, fg, bg, guifg, guibg)
