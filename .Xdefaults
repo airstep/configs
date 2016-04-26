@@ -103,8 +103,8 @@ xterm*color10:     #6bbe1a
 xterm*color3:      #ff8040
 xterm*color11:     #e6d51d
 ! Синий
-xterm*color4:      #0086d2
-xterm*color12:     #00d2ff
+!xterm*color4:      #0086d2
+!xterm*color12:     #00d2ff
 ! Маджента
 xterm*color5:      #963c59
 xterm*color13:     #d3649f

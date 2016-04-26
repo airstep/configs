@@ -683,7 +683,7 @@
     <!-- show the manage desktops section in the client-list-(combined-)menu -->
   </menu>
   <applications>
-     <application name="gvim">
+    <application name="gvim">
       <decor>no</decor>
       <fullscreen>no</fullscreen>
       <maximized>true</maximized>
@@ -706,12 +706,22 @@
       <!--fullscreen>yes</fullscreen-->
       <!--maximized>true</maximized-->
     </application>
+    <application class="Code">
+      <decor>no</decor>
+      <fullscreen>yes</fullscreen>
+      <!--maximized>true</maximized-->
+    </application>    
     <application name="notepad++.exe">
       <!--decor>no</decor-->
       <!--fullscreen>yes</fullscreen-->
       <maximized>true</maximized>
     </application>
-    <application class="Xterm">
+    <application class="XTerm">
+      <decor>no</decor>
+      <fullscreen>yes</fullscreen>
+      <maximized>true</maximized>
+    </application>
+    <application class="Atom">
       <decor>no</decor>
       <fullscreen>yes</fullscreen>
       <maximized>true</maximized>
@@ -762,7 +772,7 @@
   # order that they appear in this list
 
 
-    # each rule element can be left out or set to 'default' to specify to not 
+    # each rule element can be left out or set to 'default' to specify to not
     # change that attribute of the window
 
     <decor>yes</decor>
