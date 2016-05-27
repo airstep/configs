@@ -1,0 +1,5 @@
+MAILTO=""
+SHELL=/bin/bash
+
+*/1 * * * * /home/taras/.scripts/battery_check
+
