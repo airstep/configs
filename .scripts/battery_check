@@ -1,16 +1,17 @@
 #!/bin/bash
 
+# use 'dunst' notification server for better run
+
 # low battery in %
-LOW_BATTERY="7"
+LOW_BATTERY="15"
 # critical battery in % (execute action)
-CRITICAL_BATTERY="2"
+CRITICAL_BATTERY="5"
 # action
 ACTION="/usr/sbin/pm-suspend"
 # display icon
 ICON="/home/taras/.scripts/icons/low_battery.png"
 # path to battery /sys
 BATTERY_PATH="/sys/class/power_supply/BAT0/"
-
 
 if [ -e "$BATTERY_PATH" ]; then
     BATTERY_ON=$(cat $BATTERY_PATH/status)
@@ -21,8 +22,7 @@ if [ -e "$BATTERY_PATH" ]; then
         if [ "$CURRENT_BATTERY" -lt "$CRITICAL_BATTERY" ]; then
             $($ACTION)
         elif [ "$CURRENT_BATTERY" -lt "$LOW_BATTERY" ]; then
-            export DISPLAY=:0
-            notify-send -i "$ICON"  "Battery IS LOW - $CURRENT_BATTERY %"
+            DISPLAY=:0.0 XAUTHORITY=~/.Xauthority /usr/bin/notify-send -i "$ICON"  "Low battery - $CURRENT_BATTERY %"
         fi
     fi
 fi
