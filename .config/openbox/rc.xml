@@ -696,21 +696,48 @@
       <decor>no</decor>
       <fullscreen>no</fullscreen>
     </application>
+    <application class="Opera">
+      <decor>true</decor>
+      <fullscreen>true</fullscreen>
+    </application>
     <application name="uzbl-core">
       <decor>no</decor>
       <fullscreen>no</fullscreen>
       <maximized>true</maximized>
-    </application>
+		</application>
+    <application class="leafpad">
+      <decor>no</decor>
+      <fullscreen>true</fullscreen>
+      <maximized>true</maximized>
+		</application>
     <application name="TOTALCMD.EXE">
       <decor>no</decor>
       <!--fullscreen>yes</fullscreen-->
+      <!--maximized>true</maximized-->
+    </application>
+
+	<application class="*">
+		<position force="no">
+			<x>center</x>
+			<y>center</y>
+		</position>
+	</application>
+
+    <application class="untitled">
+      <decor>no</decor>
+      <fullscreen>yes</fullscreen>
+      <maximized>true</maximized>
+    </application>
+    <application class="QtCreator">
+      <decor>no</decor>
+      <fullscreen>yes</fullscreen>
       <!--maximized>true</maximized-->
     </application>
     <application class="Code">
       <decor>no</decor>
       <fullscreen>yes</fullscreen>
       <!--maximized>true</maximized-->
-    </application>    
+    </application>
     <application name="notepad++.exe">
       <!--decor>no</decor-->
       <!--fullscreen>yes</fullscreen-->

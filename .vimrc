@@ -12,19 +12,8 @@ Plugin 'gmarik/Vundle.vim'
 
 " General
 
-" universal debugger
-Plugin 'Vdebug'
-
-" async executor Dispatch cmd
-Plugin 'tpope/vim-dispatch'
-
 " tree undo
 Plugin 'sjl/gundo.vim'
-
-" ack
-Plugin 'mileszs/ack.vim'
-
-Plugin 'tpope/vim-liquid'
 
 " shows a git diff
 Plugin 'airblade/vim-gitgutter'
@@ -63,7 +52,7 @@ Plugin 'honza/vim-snippets'
 
 Plugin 'Valloric/YouCompleteMe'
 Plugin 'SirVer/ultisnips'
-Plugin 'dhruvasagar/ultisnips-snippets'
+
 " html tags completion (div<Ctrl+E>)
 Plugin 'rstacruz/sparkup'
 
@@ -75,69 +64,25 @@ Plugin 'Raimondi/delimitMate'
 let delimitMate_expand_cr = 1
 imap <C-c> <CR><Esc>O
 
-" diff dirs
-Plugin 'will133/vim-dirdiff'
-
 " JavaScript
 Plugin 'pangloss/vim-javascript'
 Plugin 'nathanaelkane/vim-indent-guides'
-Plugin 'mklabs/grunt.vim'
 Plugin 'chrisgillis/vim-bootstrap3-snippets'
 Plugin 'bonsaiben/bootstrap-snippets'
-Plugin 'ternjs/tern_for_vim'
 
 " nodejs
-Plugin 'digitaltoad/vim-jade'
 Plugin 'briancollins/vim-jst'
 Plugin 'moll/vim-node'
-"Plugin 'ahayman/vim-nodejs-complete'
-"Plugin 'jamescarr/snipmate-nodejs'
-"au BufNewFile,BufRead *.ejs set filetype=html
-" PHP
-Plugin 'alvan/vim-php-manual'
-Plugin 'shawncplus/phpcomplete.vim'
-
-autocmd FileType php setlocal omnifunc=phpcomplete#CompletePHP
-let php_sql_query=1
-let php_htmlInStrings=1
-let g:phpcomplete_mappings = { 'jump_to_def': ',g', }
-set completeopt=longest,menuone
-
-" Stylus (css)
-Plugin 'wavded/vim-stylus'
-
-" Swift
-"Plugin 'keith/swift.vim'
 
 " Fonts
 Plugin 'ryanoasis/vim-devicons'
 "install from 'belluzj/fantasque-sans'
 "install from 'ryanoasis/nerd-fonts'
-"let g:gradle_glyph_gradle = 'U+e73a'
-"let g:gradle_glyph_android = 'U+f17b'
-"let g:gradle_glyph_warning = 'U+f071'
-"let g:android_airline_error_glyph = 'U+f06a'
-"let g:gradle_glyph_building = 'U+f253'
 
 " Status line
 Plugin 'itchyny/lightline.vim'
 
-" Android
-"Plugin 'tfnico/vim-gradle'
-Plugin 'hsanson/vim-android'
-
-au BufEnter *.java nmap <F5> <ESC>:Gradle assembleDebug<CR>
-au BufEnter *.java nmap <F7> <ESC>:Gradle installDebug<CR>
-
-let g:loaded_syntastic_java_javac_checker = 1
-
-let g:android_sdk_path="/opt/android-sdk"
-let g:gradle_path="/usr/bin/gradle"
-
 Plugin 'artur-shaik/vim-javacomplete2'
-
-autocmd FileType java set omnifunc=javacomplete#Complete
-au BufEnter *.java nmap <F3> <ESC>:JCimportAdd<CR>
 
 " stop plugin section  --------------------------
 call vundle#end()            " required

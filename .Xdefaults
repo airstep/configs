@@ -5,9 +5,9 @@ URxvt.background:       black
 URxvt.foreground:       white
 URxvt.cursorColor:      green
 URxvt.underlineColor:   yellow
-URxvt.font:             xft:Monospace:pixelsize=12:antialias=true
-URxvt.boldFont:         xft:Monospace:bold:pixelsize=12:antialias=true
-URxvt.italicFont:       xft:Monospace:italic:pixelsize=12:antialias=true
+URxvt.font:             xft:Monospace:pixelsize=12:antialias=true,hint=true
+URxvt.boldFont:         xft:Monospace:bold:pixelsize=12:antialias=true,hint=true
+URxvt.italicFont:       xft:Monospace:italic:pixelsize=12:antialias=true,hint=true
 URxvt.perl-ext-common:  default,tabbed,matcher,clipboard,url-select
 URxvt.keysym.M-u:  		perl:url-select:select_next
 URxvt.keysym.Control-Insert: perl:clipboard:copy
@@ -15,7 +15,7 @@ URxvt.keysym.Shift-Insert: perl:clipboard:paste
 
 URxvt.perl-ext: default,url-select
 URxvt.keysym.M-u: perl:url-select:select_next
-URxvt.url-select.launcher: firefox
+URxvt.url-select.launcher: chromium
 URxvt.url-select.underline: false
 
 URxvt.matcher.button:   1

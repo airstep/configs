@@ -1,6 +1,26 @@
+"opera"
+    m:0x40 + c:32
+    Mod4 + o
+
+"/osvrt/qt/580/Tools/QtCreator/bin/qtcreator"
+    m:0x44 + c:24
+    Control+Mod4 + q
+
+"/osvrt/qt/580/5.8/gcc_64/bin/linguist"
+    m:0x44 + c:46
+    Control+Mod4 + l
+
 "urxvt"
     m:0x40 + c:54
     Mod4 + c
+
+"code"
+    m:0x40 + c:71
+    Mod4 + F5
+
+"wine .wine/drive_c/Program\ Files\ \(x86\)/Debugger\ for\ MySQL/MyDebugger.exe"
+    m:0x40 + c:24
+    Mod4 + q
 
 "wine .wine/drive_c/Program\ Files\ \(x86\)/totalcmd/TOTALCMD.EXE"
     m:0x44 + c:28
@@ -18,9 +38,17 @@
     m:0x44 + c:43
     Control+Mod4 + h
 
-"uzbl-browser"
+"atom"
+    m:0x40 + c:38
+    Mod4 + a
+
+"chromium"
     m:0x44 + c:54
     Control+Mod4 + c
+
+"uzbl-browser"
+    m:0x44 + c:30
+    Control+Mod4 + u
 
 "phpstorm.sh"
     m:0x44 + c:33
@@ -51,7 +79,7 @@
     m:0x40 + c:42
     Mod4 + g
 
-"/opt/android-studio/bin/studio.sh"
+"/osvrt/android/studio/bin/studio.sh"
 	m:0x44 + c:31
 	Control+Mod4 + i
 
@@ -60,8 +88,8 @@
     Control+Mod4 + e
 
 "sleep 1 && xset dpms force off"
-    m:0x0 + c:67
-    F1
+    m:0x4 + c:67
+    Control + F1
 
 "printscreen.sh"
     m:0x0 + c:107
@@ -75,7 +103,11 @@
     m:0x44 + c:58
     Control+Mod4 + m
 
-"geany"
+#"geany"
+"gvim"
     m:0x44 + c:42
     Control+Mod4 + g
 
+"putty"
+    m:0x40 + c:96
+    Mod4 + F12

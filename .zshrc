@@ -18,19 +18,25 @@ zstyle ':completion:*:processes-names' command 'ps xho command'
 zstyle ':completion:*:*:kill:*:processes' list-colors '=(#b) #([0-9]#)*=0=01;31'
 
 export MAILTO="back.neomind@gmail.com"
-export EDITOR="gvim"
-export BROWSER=chromium
+#export EDITOR="gvim"
+export EDITOR="vim"
+export BROWSER="chromium"
 #export GREP_OPTIONS='--color=auto'
 export GREP_COLOR='1;32'
 export GTK_IM_MODULE="xim"
 export JDK_HOME=/usr/lib/jvm/java-8-openjdk/
 export VBOX_USER_HOME=/osvrt/.VirtualBox
-export PATH=$PATH:~/.scripts/:/usr/local/bin:/opt/java/bin:~/tools/gsutil:/home/taras/.gem/ruby/2.2.0/bin:/osvrt/vscode:/opt/android-sdk/tools:/opt/android-sdk/platform-tools
-export PATH=$PATH:/home/taras/.eclipse/org.eclipse.platform_4.4.2_1543616141_linux_gtk_x86_64:/osvrt/android-ndk-r10e
+export PATH=$PATH:~/.scripts/:/usr/local/bin:~/tools/gsutil:/home/taras/.gem/ruby/2.2.0/bin:/osvrt/vscode:/osvrt/android/sdk/tools:/osvrt/android/sdk/platform-tools
+export PATH=$PATH:/osvrt/android/ndk/android-ndk-r13b
+export PATH=$PATH:/usr/lib/notification-daemon-1.0
+export PATH=$PATH:/opt/google/chrome-unstable
+export PATH=$PATH:$HOME/.meteor
 
-export ANDROID_SDK=/opt/android-sdk
-export ANDROID_NDK=/osvrt/android-ndk-r10e
-export ANDROID_TMP=/osvrt/android-tmp
+export ANDROID_HOME=/osvrt/android/sdk
+export ANDROID_TOOLS=/osvrt/android/sdk/platform-tools
+export ANDROID_SDK=/osvrt/android/sdk
+export ANDROID_NDK=/osvrt/android/ndk/android-ndk-r10e
+export ANDROID_TMP=/osvrt/android/tmp
 
 export KEYSTORE_PROPERTIES=/home/taras/spd/tgsoft/keys/keystore.properties
 if [ -d /cry/scripts ] ; then
@@ -89,6 +95,15 @@ setopt NO_BEEP
 setopt NO_HUP
 setopt NO_CHECK_JOBS
 
+alias work='cd /osvrt/work'
+alias qt='cd ~/work/qt'
+alias gar="gradle assembleRelease"
+alias gad="gradle assembleDebug"
+alias gai="gradle installDebug"
+alias g='googler -n10'
+alias med='cd /home/taras/work/medical/mc'
+alias ice='cd /home/taras/work/weblancer/icecast/ssh'
+alias abc='cd /home/taras/work/android/MusicProject/Music'
 alias vlog='logcat-color | egrep $1'
 alias npmlist='npm list -g --depth=0'
 alias vpi='vim +PluginInstall +qall'
@@ -108,7 +123,7 @@ alias x='startx'
 alias ej='sudo eject'
 alias grep='grep --exclude="*.svn*"'
 alias network='sudo /etc/rc.d/network start'
-alias wifi='wifidhcp.sh'
+alias wifi='sudo wifi-menu'
 alias pacup='sudo pacman -Syu'
 alias pac="sudo pacman -S"
 alias srv="sudo sysctemctl"
