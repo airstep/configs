@@ -1,12 +1,32 @@
-HISTFILE=".history"
+# history is useful
+HISTFILE=~/.histfile
+HISTSIZE=1000
+SAVEHIST=1000
+setopt appendhistory notify
+unsetopt beep
+bindkey -e
 
-autoload -U compinit promptinit
+zstyle :compinstall filename '/home/taras/.zshrc'
+
+autoload -Uz compinit promptinit
 compinit
 promptinit
 
+# hello console
 PS1="%B%F{blue}%T %F{green}%m %B%F{white}$ "
 PS2="%T %m $ "
 RPROMPT='%'
+
+export EDITOR="vim"
+export MAILTO="back.neomind@gmail.com"
+export BROWSER="chromium"
+
+# android
+#export ANDROID_HOME=/osvrt/android/sdk
+#export ANDROID_TOOLS=/osvrt/android/sdk/platform-tools
+#export ANDROID_SDK=/osvrt/android/sdk
+#export ANDROID_NDK=/osvrt/android/ndk/android-ndk-r10e
+#export ANDROID_TMP=/osvrt/android/tmp
 
 # Автодополнение в режиме меню
 zstyle ':completion:*' menu yes select
@@ -17,36 +37,12 @@ zstyle ':completion:*:processes' sort false
 zstyle ':completion:*:processes-names' command 'ps xho command'
 zstyle ':completion:*:*:kill:*:processes' list-colors '=(#b) #([0-9]#)*=0=01;31'
 
-export MAILTO="back.neomind@gmail.com"
-#export EDITOR="gvim"
-export EDITOR="vim"
-export BROWSER="chromium"
-#export GREP_OPTIONS='--color=auto'
-export GREP_COLOR='1;32'
-export GTK_IM_MODULE="xim"
-export JDK_HOME=/usr/lib/jvm/java-8-openjdk/
-export VBOX_USER_HOME=/osvrt/.VirtualBox
-export PATH=$PATH:~/.scripts/:/usr/local/bin:~/tools/gsutil:/home/taras/.gem/ruby/2.2.0/bin:/osvrt/vscode:/osvrt/android/sdk/tools:/osvrt/android/sdk/platform-tools
-export PATH=$PATH:/osvrt/android/ndk/android-ndk-r13b
-export PATH=$PATH:/usr/lib/notification-daemon-1.0
-export PATH=$PATH:/opt/google/chrome-unstable
-export PATH=$PATH:$HOME/.meteor
+# не пищать при дополнении или ошибках
+setopt NO_BEEP
 
-export ANDROID_HOME=/osvrt/android/sdk
-export ANDROID_TOOLS=/osvrt/android/sdk/platform-tools
-export ANDROID_SDK=/osvrt/android/sdk
-export ANDROID_NDK=/osvrt/android/ndk/android-ndk-r10e
-export ANDROID_TMP=/osvrt/android/tmp
-
-export KEYSTORE_PROPERTIES=/home/taras/spd/tgsoft/keys/keystore.properties
-if [ -d /cry/scripts ] ; then
-  PATH=/cry/scripts:"${PATH}"
-fi
-
-[ "$PREFIX" ] || export PREFIX="/usr"
-[ "$XDG_CACHE_HOME" ] || export XDG_CACHE_HOME="$HOME/.cache"
-[ "$XDG_CONFIG_HOME" ] || export XDG_CONFIG_HOME="$HOME/.config"
-[ "$XDG_DATA_HOME" ] || export XDG_DATA_HOME="$HOME/.local/share"
+# не прекращать выполнение приложений
+setopt NO_HUP
+setopt NO_CHECK_JOBS
 
 # to add other keys to this hash, see: man 5 terminfo
 typeset -A key
@@ -88,77 +84,40 @@ if (( ${+terminfo[smkx]} )) && (( ${+terminfo[rmkx]} )); then
     zle -N zle-line-finish
 fi
 
-# не пищать при дополнении или ошибках
-setopt NO_BEEP
-
-# не прекращать выполнение приложений
-setopt NO_HUP
-setopt NO_CHECK_JOBS
-
-alias work='cd /osvrt/work'
-alias qt='cd ~/work/qt'
-alias gar="gradle assembleRelease"
-alias gad="gradle assembleDebug"
-alias gai="gradle installDebug"
+# aliases
 alias g='googler -n10'
-alias med='cd /home/taras/work/medical/mc'
-alias ice='cd /home/taras/work/weblancer/icecast/ssh'
-alias abc='cd /home/taras/work/android/MusicProject/Music'
 alias vlog='logcat-color | egrep $1'
-alias npmlist='npm list -g --depth=0'
 alias vpi='vim +PluginInstall +qall'
 alias vpl='vim +PluginList'
 alias vpc='vim +PluginClean'
-alias rhtp='sudo systemctl start php-fpm.service httpd.service'
-alias shtp='sudo systemctl stop php-fpm.service httpd.service'
-alias vng='sudo vim /etc/nginx/nginx.conf'
-alias vphp='sudo vim /etc/php/php.ini'
+
 alias colors='zenity --color-selection'
 alias ss='systemd-analyze blame'
 alias ..='cd ..'
 alias cl='clear'
 alias ls='ls --color=auto'
 alias ll='ls -lah --color=auto'
-alias x='startx'
-alias ej='sudo eject'
+alias x='sway'
 alias grep='grep --exclude="*.svn*"'
-alias network='sudo /etc/rc.d/network start'
 alias wifi='sudo wifi-menu'
 alias pacup='sudo pacman -Syu'
 alias pac="sudo pacman -S"
 alias srv="sudo sysctemctl"
 alias ya="yaourt"
-alias vimrc="sudo vim /etc/rc.conf"
-alias pc="proxychains"
-alias viproxy="vim ~/.proxychains/proxychains.conf"
 alias pacman='sudo pacman'
-alias incorn='sudo /etc/rc.d/incron'
-alias fan='sudo /etc/rc.d/dellfand'
 alias poweroff='sudo shutdown -h now'
 alias reboot='sudo shutdown -r now'
 alias timeroff='sudo shutdown -h -P 30'
 alias nmap='sudo nmap'
 alias mount='sudo mount'
 alias router='ssh root@192.168.1.1'
-#alias mc='mc --nocolor'
-alias rss='snownews -u'
-alias cdw='cd ~/work/eldos/Projects/SolFS_2/JNI/'
 alias powertop='sudo powertop'
-alias modem='sudo wvdial'
 alias speedtest='php ~/scripts/speedtest/speedtest.php'
 alias compose='setxkbmap -option compose:ralt'
 alias killwifi='sudo ifconfig wlan0 down'
-alias games='cd  .wine/drive_c/Games'
-alias apacherun='sudo /etc/rc.d/httpd restart'
-alias mysqlrun='sudo /etc/rc.d/mysqld restart'
-alias edvideo='avidemux2_gtk'
-alias mails='mutt'
 alias qemu='qemu-system-x86_64 -enable-kvm'
-alias sppp='sudo pppoe-start'
 alias webcam='xawtv -c /dev/video0'
-alias email='mail -A eldos'
-alias umusb='sudo umount /tmp/usb'
-alias storesound='sudo alsactl -f /var/lib/alsa/asound.state store'
+alias umusb='sudo umount /mnt/usb'
 
 # настройка ассоциаций
 alias -s {html,org,php,com,net}=$BROWSER
@@ -167,4 +126,4 @@ alias -s {avi,mpeg,mpg,mov,m2v}=vlc
 alias -s {ogg,mp3,wav,wma}=xmms
 alias -s pdf=apvlv
 
-[ -s "/home/taras/.dnx/dnvm/dnvm.sh" ] && . "/home/taras/.dnx/dnvm/dnvm.sh" # Load dnvm
+

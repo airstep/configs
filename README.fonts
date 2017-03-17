@@ -1,0 +1,13 @@
+https://www.reddit.com/r/archlinux/comments/40w3ld/why_is_font_rendering_so_crap_by_default/
+
+If you'd like a font rendering solution that doesn't require installing extra packages, I would recommend some Xft settings in your ~/.Xresources:
+Xft.lcdfilter: lcddefault
+Xft.antialias: true
+Xft.autohint: 0
+Xft.hinting: true
+Xft.hintstyle: hintslight
+Xft.rgba: rgb
+Xft.dpi: 96
+This is what I personally use, but other options are available of course.
+Then do xrdb -merge ~/.Xresources and add it to your WM startup or whatever.
+See the wiki for Xft in xresources for help

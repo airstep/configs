@@ -1,13 +1,20 @@
 URxvt.title:            Terminal
 URxvt.buffered:         true
 URxvt.borderLess:       false
+
 URxvt.background:       black
 URxvt.foreground:       white
 URxvt.cursorColor:      green
 URxvt.underlineColor:   yellow
+
+#URxvt.font: xft:UbuntuMono:pexelsize=10
+
 URxvt.font:             xft:Monospace:pixelsize=12:antialias=true,hint=true
 URxvt.boldFont:         xft:Monospace:bold:pixelsize=12:antialias=true,hint=true
 URxvt.italicFont:       xft:Monospace:italic:pixelsize=12:antialias=true,hint=true
+
+URxvt.letterSpace:	-1
+
 URxvt.perl-ext-common:  default,tabbed,matcher,clipboard,url-select
 URxvt.keysym.M-u:  		perl:url-select:select_next
 URxvt.keysym.Control-Insert: perl:clipboard:copy
@@ -19,13 +26,24 @@ URxvt.url-select.launcher: chromium
 URxvt.url-select.underline: false
 
 URxvt.matcher.button:   1
-URxvt.scrollBar:	    false
+URxvt.scrollBar:	false
 URxvt.tabbed.tabbar-fg: 8
 URxvt.tabbed.tabbar-bg: 0
 URxvt.tabbed.tab-fg:    3
 URxvt.tabbed.tab-bg:    0
 urxvt.depth:			32
 urxvt.background:		rgba:0000/0000/0000/dddd
+
+#-------fonts patch-------------------
+Xft.lcdfilter: lcddefault
+Xft.antialias: true
+Xft.autohint: 0
+Xft.hinting: true
+Xft.hintstyle: hintslight
+Xft.rgba: rgb
+# xdpyinfo | grep dots
+Xft.dpi: 96
+# then do: xrdb -merge ~/.Xresources
 
 #----------tiny color's----------------
 *foreground:     rgb:22/22/22
