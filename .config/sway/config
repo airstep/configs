@@ -27,7 +27,9 @@ hide_edge_borders both
 ### Output configuration
 #
 # Default wallpaper (more resolutions are available in /usr/share/sway/)
-output * bg /usr/share/sway/Sway_Wallpaper_Blue_1366x768.png fill
+#output * bg /usr/share/sway/Sway_Wallpaper_Blue_1366x768.png fill
+output * bg ~/images/nodejs.png fill
+
 #
 # Example configuration:
 #
@@ -206,6 +208,6 @@ bindsym $mod+r mode "resize"
 #        background #323232
 #        inactive_workspace #32323200 #32323200 #5c5c5c
 #    }
-}
+#}
 
 include /etc/sway/config.d/*
