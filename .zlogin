@@ -1,6 +1,6 @@
 if [[ -z $DISPLAY ]] && [[ $(tty) = /dev/tty1 ]]; then	
   export GDK_BACKEND=wayland
-  export QT_QPA_PLATFORM=wayland
+  export QT_QPA_PLATFORM=wayland-egl
   
   export _JAVA_AWT_WM_NONREPARENTING=1
   export QT_WAYLAND_DISABLE_WINDOWSDECORATION=1
