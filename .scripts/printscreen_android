@@ -1,0 +1,8 @@
+#!/bin/bash
+
+if [ ! -d ~/images/shot/android ] ; then
+	mkdir -p ~/images/shot/android
+fi
+
+DATE=`date +%Y_%m_%d_%H_%M_%S`
+adb shell screencap -p | sed 's/\r$//' > ~/images/shot/android/$DATE.png

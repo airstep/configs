@@ -17,9 +17,12 @@ set $right l
 set $term urxvt
 # Your preferred application launcher
 set $menu dmenu_run
+# Browser
+set $bro chromium
 
 # Hide titlebars
 for_window [class="^.*"] border none
+for_window [class="feh"] fullscreen
 
 # Hide window borders
 hide_edge_borders both
@@ -52,17 +55,26 @@ output * bg ~/images/nodejs.png fill
 # The escape symbol "\" has to be removed.
 # Read `man 5 sway-input` for more information about this section.
    input "2:7:SynPS/2_Synaptics_TouchPad" {
-       #dwt enabled
+       dwt enabled
        tap enabled
        natural_scroll enabled
        scroll_method edge
-       #middle_emulation enabled
+       middle_emulation enabled
    }
 
 ### Key bindings
 #
 # Basics:
 #
+    # start a browser
+    bindsym Ctrl+$mod+c exec $bro
+    bindsym $mod+F5 exec code
+    bindsym $mod+g exec gimp
+
+    # make shots (note: install imagemagick)
+    bindsym Print exec printscreen
+    bindsym Ctrl+Print exec printscreen_android
+
     # start a terminal
     bindsym $mod+Return exec $term
 

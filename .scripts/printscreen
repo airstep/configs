@@ -1,0 +1,8 @@
+#!/bin/bash
+
+if [ ! -d ~/images/shot ] ; then
+    mkdir ~/images/shot
+fi
+
+DATE=`date +%Y_%m_%d_%H:%M:%S`
+swaygrab ~/images/shot/$DATE.png
