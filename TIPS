@@ -1,0 +1,9 @@
+После вчерашнего обновления стала появляться данная ошибка:
+leds dell::kbd_backlight: Setting an LED's brightness failed (-6)
+inxi -Fxz
+Как исправить? Спасибо.
+
+Как выяснилось, это подсветка клавиатуры, а ее у меня вообще нет. Отключаем:
+# systemctl stop systemd-backlight@leds:dell::kbd_backlight.service
+# systemctl disable systemd-backlight@leds:dell::kbd_backlight.service
+# systemctl mask systemd-backlight@leds:dell::kbd_backlight.service
