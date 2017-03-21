@@ -1,3 +1,22 @@
+use: systemd-analyze
+to get know about system startup time
+
+or: systemd-analyze blame
+for more description
+
+or alias sstat='systemd-analyze blame'
+
+or: $ systemd-analyze plot > plot.svg
+for graphical render, then open in chrome
+------------
+
+Journal size limit
+If the journal is persistent (non-volatile), its size limit is set to a default value of 10% of the size of the underlying file system but capped to 4 GiB. For example, with  /var/log/journal/ located on a 20 GiB partition, journal data may take up to 2 GiB. On a 50 GiB partition, it would max at 4 GiB.
+The maximum size of the persistent journal can be controlled by uncommenting and changing the following:
+/etc/systemd/journald.conf
+SystemMaxUse=50M
+
+------------
 После вчерашнего обновления стала появляться данная ошибка:
 leds dell::kbd_backlight: Setting an LED's brightness failed (-6)
 inxi -Fxz
@@ -7,3 +26,57 @@ inxi -Fxz
 # systemctl stop systemd-backlight@leds:dell::kbd_backlight.service
 # systemctl disable systemd-backlight@leds:dell::kbd_backlight.service
 # systemctl mask systemd-backlight@leds:dell::kbd_backlight.service
+
+
+----------
+https://wiki.archlinux.org/index.php/Power_management#Disabling_NMI_watchdog
+
+Disabling NMI watchdog
+
+The NMI watchdog is a debugging feature to catch hardware hangs that cause a kernel panic.
+On some systems it can generate a lot of interrupts, causing a noticeable increase in power usage:
+
+/etc/sysctl.d/disable_watchdog.conf
+kernel.nmi_watchdog = 0
+
+or add nmi_watchdog=0 to the kernel line to disable it completely from early boot.
+
+---------
+>> I'm trying to achieve quiet login and messages like "starting version 217" or 218 appeared recently.
+
+in /etc/default/grub
+
+#GRUB_CMDLINE_LINUX_DEFAULT="quiet"
+GRUB_CMDLINE_LINUX="loglevel=3 rd.udev.log-priority=3"
+
+then: sudo grub-mkconfig -o /boot/grub/grub.cfg
+
+
+Just edit your /etc/udev/udev.conf file
+# see udev.conf(5) for details
+
+udev_log="err"
+Then, rebuild your initramfs
+mkinitcpio -p linux
+You're done.
+--------
+
+In Arch Linux mkinitcpio -p linux
+
+shows
+
+Possibly missing firmware for module: aic94xx
+ Possibly missing firmware for module: wd719x
+Solve
+
+git clone https://aur.archlinux.org/aic94xx-firmware.git
+cd aic94xx-firmware
+makepkg -sri
+
+git clone https://aur.archlinux.org/wd719x-firmware.git
+cd wd719x-firmware
+makepkg -sri
+
+and then mkinitcpio -p linux again.
+
+

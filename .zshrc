@@ -28,6 +28,10 @@ export BROWSER="chromium"
 #export ANDROID_NDK=/osvrt/android/ndk/android-ndk-r10e
 #export ANDROID_TMP=/osvrt/android/tmp
 
+# path
+export PATH=$PATH:~/.scripts/
+export PATH=$PATH:/opt/android/sdk/platform-tools
+
 # Автодополнение в режиме меню
 zstyle ':completion:*' menu yes select
 
@@ -93,11 +97,12 @@ alias vpc='vim +PluginClean'
 
 alias colors='zenity --color-selection'
 alias ss='systemd-analyze blame'
+alias sv='sudo systemctl'
 alias ..='cd ..'
 alias cl='clear'
 alias ls='ls --color=auto'
 alias ll='ls -lah --color=auto'
-alias x='sway'
+alias x='swayx'
 alias grep='grep --exclude="*.svn*"'
 alias wifi='sudo wifi-menu'
 alias pacup='sudo pacman -Syu'
@@ -105,8 +110,8 @@ alias pac="sudo pacman -S"
 alias srv="sudo sysctemctl"
 alias ya="yaourt"
 alias pacman='sudo pacman'
-alias poweroff='sudo shutdown -h now'
-alias reboot='sudo shutdown -r now'
+alias poweroff='sudo systemctl poweroff'
+alias reboot='sudo systemctl reboot'
 alias timeroff='sudo shutdown -h -P 30'
 alias nmap='sudo nmap'
 alias mount='sudo mount'
@@ -118,6 +123,13 @@ alias killwifi='sudo ifconfig wlan0 down'
 alias qemu='qemu-system-x86_64 -enable-kvm'
 alias webcam='xawtv -c /dev/video0'
 alias umusb='sudo umount /mnt/usb'
+alias getkey='pacman-key -r'
+alias umount='sudo umount'
+alias fumount='fusermount -u'
+alias net='sudo netctl'
+alias nets='sudo netctl start'
+alias slog='sudo journalctl -rb -1'
+alias sstat='systemd-analyze blame'
 
 # настройка ассоциаций
 alias -s {html,org,php,com,net}=$BROWSER
